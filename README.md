@@ -106,6 +106,31 @@ A synthetic dataset makes the project:
 - independent from third-party data availability
 - flexible enough to simulate realistic analytical scenarios
 
+## Data Loading
+
+The project includes a reproducible SQLite loading step that transforms the synthetic CSV dataset into a queryable analytical database.
+
+### Database Artifact
+
+- `data/processed/customer_analytics.db`
+
+### Loading Script
+
+- `scripts/load_to_sqlite.py`
+
+### Initial Data Quality Checks
+
+The first SQL file includes validation queries for:
+
+- row count
+- distinct customers and products
+- date range
+- null checks on key fields
+- invalid numeric values
+- revenue reconciliation
+- duplicate checks
+- category and country distributions
+
 ## Core Analyses
 
 ### 1. Customer Lifetime Value
@@ -145,14 +170,3 @@ Although this is a SQL-focused project, it is structured with portfolio-quality 
 4. Write SQL analyses by topic
 5. Produce an analytical report in Markdown
 6. Finalize a polished GitHub README
-
-## Suggested First Commit
-
-```bash
-git add .
-git commit -m "chore: initialize customer analytics SQL project structure"
-```
-
-## Status
-
-Project planning complete. Ready for implementation.
