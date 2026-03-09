@@ -69,30 +69,42 @@ customer-analytics-sql/
 └── README.md
 ```
 
-## Dataset Design
+## Dataset
 
-The synthetic dataset will simulate an e-commerce transactional environment with approximately:
+This project uses a synthetic e-commerce transaction dataset generated specifically for portfolio purposes.
 
-- **200,000 transaction rows**
-- multiple customers
-- multiple products / product groups
-- realistic order dates across a defined time range
-- quantities, prices, revenue behavior, and repeat purchases
+### Dataset Characteristics
 
-### Expected Fields
+- 200,000 transaction rows
+- 12,000 customers
+- 250 products
+- 8 product categories
+- 6 countries
+- 24 months of transactional history
 
-- `transaction_id`
+### Included Fields
+
 - `order_id`
 - `order_date`
 - `customer_id`
-- `customer_name`
 - `country`
 - `product_id`
 - `product_name`
-- `product_group`
+- `category`
 - `quantity`
 - `unit_price`
-- `revenue`
+- `discount_pct`
+- `gross_revenue`
+- `net_revenue`
+
+### Why a Synthetic Dataset?
+
+A synthetic dataset makes the project:
+
+- fully reproducible
+- easy to run locally
+- independent from third-party data availability
+- flexible enough to simulate realistic analytical scenarios
 
 ## Core Analyses
 
