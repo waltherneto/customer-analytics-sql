@@ -154,6 +154,14 @@ Identify the categories and products driving the highest revenue.
 ### 5. Customer Retention Indicators
 Measure returning customers, repeat purchase behavior, and prior-month retention.
 
+## Analytical Report
+
+A concise business-facing analytical report is available in:
+
+- `analysis/analytical_report.md`
+
+The report summarizes the main findings from the SQL analysis and translates query outputs into business insights.
+
 ## Engineering Principles Demonstrated
 
 Although this is a SQL-focused project, it is structured with portfolio-quality engineering practices:
