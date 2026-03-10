@@ -1,12 +1,14 @@
 # Customer Analytics SQL Project
 
-A SQL-focused portfolio project designed to analyze e-commerce customer behavior using a realistic synthetic transactional dataset.
+A SQL-focused analytics portfolio project designed to analyze e-commerce customer behavior using a realistic synthetic transaction dataset.
 
 ## Project Goal
 
-This project demonstrates strong analytical SQL skills through a practical business scenario:
+This project demonstrates strong analytical SQL skills through a realistic business scenario:
 
-> An e-commerce company wants to better understand customer behavior, identify high-value customers, and uncover purchasing patterns.
+> An e-commerce company wants to better understand customer behavior, identify high-value customers, uncover purchasing patterns, and monitor customer retention.
+
+The project is intentionally designed to be lightweight in infrastructure and strong in analytical SQL quality.
 
 ## Updated Project Scope
 
@@ -21,52 +23,47 @@ This approach strengthens the portfolio value by demonstrating:
 
 ## Business Questions
 
-The project answers the following questions:
+This project answers the following questions:
 
 - Who are the highest-value customers?
 - How can customers be segmented using RFM analysis?
 - How is revenue evolving month by month?
-- Which product groups generate the most revenue?
+- Which product categories and products generate the most revenue?
 - Are customers returning over time?
 
 ## Tech Stack
 
 - SQL
 - SQLite
-- Python (for synthetic data generation and CSV/database loading only)
+- Python
+- Pandas
 
 ## Repository Structure
 
 ```text
 customer-analytics-sql/
-│
+├── analysis/
+│   └── analytical_report.md
 ├── data/
-│   ├── raw/
-│   │   └── customer_transactions.csv
-│   └── processed/
-│       └── customer_analytics.db
-│
+│   ├── processed/
+│   │   └── customer_analytics.db
+│   └── raw/
+│       └── customer_transactions.csv
+├── docs/
+│   └── schema.md
+├── scripts/
+│   ├── generate_dataset.py
+│   └── load_to_sqlite.py
 ├── sql_queries/
 │   ├── 01_data_quality_checks.sql
 │   ├── 02_customer_lifetime_value.sql
 │   ├── 03_rfm_segmentation.sql
 │   ├── 04_monthly_revenue_analysis.sql
-│   ├── 05_top_product_groups.sql
+│   ├── 05_top_product_categories.sql
 │   └── 06_customer_retention.sql
-│
-├── analysis/
-│   └── analytical_report.md
-│
-├── scripts/
-│   ├── generate_dataset.py
-│   └── load_data.py
-│
-├── docs/
-│   └── schema.md
-│
 ├── .gitignore
-├── requirements.txt
-└── README.md
+├── README.md
+└── requirements.txt
 ```
 
 ## Dataset
@@ -76,7 +73,7 @@ This project uses a synthetic e-commerce transaction dataset generated specifica
 ### Dataset Characteristics
 
 - 200,000 transaction rows
-- 12,000 customers
+- 11,993 customers
 - 250 products
 - 8 product categories
 - 6 countries
@@ -135,24 +132,13 @@ The first SQL file includes validation queries for:
 
 The SQL layer is organized by analytical topic and covers the following business questions:
 
-### 1. Customer Lifetime Value
-Identify the highest-value customers and evaluate customer revenue concentration.
+- **Customer Lifetime Value (CLV):** identify the highest-value customers and evaluate customer revenue concentration.
+- **RFM Segmentation:** classify customers based on recency, frequency, and monetary value.
+- **Monthly Revenue Analysis:** track revenue trends, active customers, and month-over-month growth.
+- **Top Product Categories:** identify the categories and products driving the highest revenue.
+- **Customer Retention Indicators:** measure returning customers, repeat purchase behavior, and prior-month retention.
 
-### 2. RFM Segmentation
-Classify customers based on recency, frequency, and monetary value. Segment customers based on:
-
-- **Recency**: how recently the customer purchased
-- **Frequency**: how often the customer purchased
-- **Monetary**: how much revenue the customer generated
-
-### 3. Monthly Revenue Analysis
-Track revenue trends, active customers, and month-over-month growth.
-
-### 4. Top Product Groups
-Identify the categories and products driving the highest revenue.
-
-### 5. Customer Retention Indicators
-Measure returning customers, repeat purchase behavior, and prior-month retention.
+Each analysis is stored in an individual SQL file inside the `sql_queries/` folder for readability and reuse.
 
 ## Analytical Report
 
@@ -164,19 +150,94 @@ The report summarizes the main findings from the SQL analysis and translates que
 
 ## Engineering Principles Demonstrated
 
-Although this is a SQL-focused project, it is structured with portfolio-quality engineering practices:
+Although this is a small portfolio project, it demonstrates important analytics engineering and data project practices:
 
-- clean repository organization
-- reproducible synthetic data generation
-- separation between raw data, processed assets, SQL logic, and analysis
-- business-oriented analytical documentation
-- versioned implementation with clear Git commits
+- reproducible dataset generation
+- reproducible database loading
+- structured repository organization
+- data quality validation before analysis
+- modular SQL by business topic
+- business-facing analytical documentation
+
+## How to Run
+
+### 1. Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 2. Generate the synthetic dataset
+
+```bash
+python scripts/generate_dataset.py
+```
+
+### 3. Load data into SQLite
+
+```bash
+python scripts/load_to_sqlite.py
+```
+
+### 4. Run the SQL analyses
+
+Using SQLite CLI:
+
+```bash
+sqlite3 -header -column data/processed/customer_analytics.db
+```
+
+Then run individual files:
+
+```sql
+.read sql_queries/01_data_quality_checks.sql
+.read sql_queries/02_customer_lifetime_value.sql
+.read sql_queries/03_rfm_segmentation.sql
+.read sql_queries/04_monthly_revenue_analysis.sql
+.read sql_queries/05_top_product_categories.sql
+.read sql_queries/06_customer_retention.sql
+```
+
+You can also use DB Browser for SQLite or a VS Code SQLite extension.
 
 ## Recommended Workflow
 
-1. Initialize repository structure
-2. Generate synthetic dataset with 200k rows
-3. Load CSV data into SQLite
-4. Write SQL analyses by topic
-5. Produce an analytical report in Markdown
-6. Finalize a polished GitHub README
+1. Generate the synthetic dataset.
+2. Load the CSV into SQLite.
+3. Run the data quality checks.
+4. Execute the analytical SQL files by topic.
+5. Review the analytical report and update it with real results.
+6. Finalize the project as a GitHub portfolio piece.
+
+## Project Highlights
+
+This project was built to showcase:
+
+- strong SQL for analytics
+- customer-centric business analysis
+- clean project structure for GitHub
+- reproducible local setup
+- portfolio-ready written communication
+
+## Possible Extensions
+
+Potential future improvements include:
+
+- cohort retention analysis
+- customer churn scoring
+- dashboarding in Power BI
+- migration from SQLite to PostgreSQL
+- dbt-based analytical modeling
+- orchestration with a lightweight pipeline tool
+
+## Why This Project Works for a Portfolio
+
+This project is intentionally scoped to be:
+
+- realistic
+- fast to build
+- easy to review
+- strong in SQL fundamentals
+- clear in business value
+
+It is designed to demonstrate analytical thinking and engineering discipline without unnecessary infrastructure complexity.
